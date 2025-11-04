@@ -9,13 +9,13 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
-            background-color: #000; /* Чорний фон */
-            color: #fff; /* Білий текст */
+            background-color: #000;
+            color: #fff;
         }
         .container {
             max-width: 800px;
             margin: 0 auto;
-            border: 2px solid #fff; /* Біла рамка */
+            border: 2px solid #fff;
             padding: 30px;
         }
         h1 {
@@ -81,17 +81,17 @@
     </div>
 
     <script>
-        // Список аудіозаписів та їхніх назв
+        // Змінено розширення файлів на .mp3
         const firstAidAudios = [
-            { name: "Вступ", src: "audio/first_aid_vstup.wav" },
-            { name: "Зупинка кровообігу", src: "audio/first_aid_circulation.wav" },
-            { name: "Кровотеча", src: "audio/first_aid_bleeding.wav" },
-            { name: "Опік", src: "audio/first_aid_burn.wav" },
-            { name: "Отруєння", src: "audio/first_aid_poisoning.wav" },
-            { name: "Ушкодження очей", src: "audio/first_aid_eyes.wav" },
-            { name: "Переломи", src: "audio/first_aid_fractures.wav" },
-            { name: "Судоми", src: "audio/first_aid_seizures.wav" },
-            { name: "Ураження електричним струмом", src: "audio/first_aid_electric.wav" }
+            { name: "Вступ", src: "audio/first_aid_vstup.mp3" },
+            { name: "Зупинка кровообігу", src: "audio/first_aid_circulation.mp3" },
+            { name: "Кровотеча", src: "audio/first_aid_bleeding.mp3" },
+            { name: "Опік", src: "audio/first_aid_burn.mp3" },
+            { name: "Отруєння", src: "audio/first_aid_poisoning.mp3" },
+            { name: "Ушкодження очей", src: "audio/first_aid_eyes.mp3" },
+            { name: "Переломи", src: "audio/first_aid_fractures.mp3" },
+            { name: "Судоми", src: "audio/first_aid_seizures.mp3" },
+            { name: "Ураження електричним струмом", src: "audio/first_aid_electric.mp3" }
         ];
 
         const container = document.getElementById('audio-list-container');
@@ -104,7 +104,7 @@
                 <div class="audio-item">
                     <h2>${index + 1}. ${item.name}</h2>
                     <audio id="${itemId}" controls preload="metadata">
-                        <source src="${item.src}" type="audio/wav">
+                        <source src="${item.src}" type="audio/mpeg">
                         Ваш браузер не підтримує елемент audio.
                     </audio>
                     <div class="speed-control">
@@ -120,16 +120,13 @@
             container.innerHTML += itemHTML;
         });
 
-        // Функція для зміни швидкості відтворення
         function adjustSpeed(audioId, delta) {
             const audio = document.getElementById(audioId);
             const speedDisplay = document.getElementById(`speed_${audioId.split('_')[1]}`);
             
-            // Отримуємо поточну швидкість, округлюємо до 2 знаків після коми для точності
             let currentSpeed = Math.round(audio.playbackRate * 100) / 100;
             let newSpeed = currentSpeed + delta;
 
-            // Обмеження швидкості: від 1.0 до 2.0 (крок 0.25)
             if (newSpeed < 1.0) {
                 newSpeed = 1.0;
             }
@@ -137,7 +134,6 @@
                 newSpeed = 2.0;
             }
 
-            // Застосовуємо нову швидкість та оновлюємо дисплей
             audio.playbackRate = newSpeed;
             speedDisplay.textContent = newSpeed.toFixed(2);
         }
